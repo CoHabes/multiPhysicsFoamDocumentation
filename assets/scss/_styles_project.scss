@@ -1,0 +1,821 @@
+// --------------------------------------------------
+// popover styles
+// --------------------------------------------------
+.popover {
+  border: 1px solid $popover-border-color;
+}
+
+.popover-header {
+  color: $white;
+  font-weight: 600;
+  background-color: $popover-header-bg;
+  padding: 0.75rem;
+}
+
+.popover-body {
+  color: $body-color;
+  background-color: lighten($body-bg, 5%);
+}
+
+// --------------------------------------------------
+// mermaid (diagrams)
+// --------------------------------------------------
+.td-content pre.mermaid {
+  background-color: $code-block-bg;
+}
+
+// --------------------------------------------------
+// reduce padding for small screens
+// --------------------------------------------------
+@include media-breakpoint-down(md) {
+  .td-main {
+    main {
+      padding-top: 1rem;
+    }
+  }
+}
+
+// --------------------------------------------------
+// increase 80% content width limit for large screens
+// --------------------------------------------------
+.td-max-width-on-larger-screens {
+  @include media-breakpoint-up(lg) {
+    max-width: 90%;
+  }
+}
+
+// --------------------------------------------------
+// color the sidebars darker than main content area
+// --------------------------------------------------
+@include media-breakpoint-down(sm) {
+  .td-main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .td-sidebar {
+    background-color: $td-sidebar-bg-color;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .td-outer {
+    background-color: $td-sidebar-bg-color;
+    height: unset;
+  }
+  .td-sidebar,
+  .td-sidebar-toc {
+    background-color: unset;
+  }
+  .td-main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  main {
+    background-color: $body-bg;
+  }
+}
+
+// --------------------------------------------------
+// add border below search on small devices
+// --------------------------------------------------
+@include media-breakpoint-down(md) {
+  .td-sidebar {
+    border-bottom: 0.1rem solid $border-color;
+  }
+}
+
+// --------------------------------------------------
+// fix positions
+// --------------------------------------------------
+@include media-breakpoint-up(md) {
+  .td-main {
+    .td-main_inner {
+      // note, this is required to ensure the footer not visible for short pages
+      // which is important to prevent the "search" and "toc" sidebars from being
+      // underneath the the header
+      min-height: 100vh;
+
+      // ensure the background color is not visible because of left-right padding
+      // note that there is a default left-right margin of -15px, which we are
+      // selectively overwriting depending on the screen width
+      //  - there is a left sidebar for md and above
+      //  - there is a right sidebar for xl and above
+      margin-left: 0;
+      @include media-breakpoint-up(xl) {
+        margin-right: 0;
+      }
+    }
+
+    // left-hand sidebar
+    .td-sidebar {
+      padding-left: 0;
+      padding-right: 0.25rem;
+      padding-top: 7rem;
+      padding-bottom: 0;
+
+      .td-sidebar__inner {
+        position: sticky;
+        top: 7rem;
+        height: calc(100vh - 7rem);
+
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    // main content area
+    main {
+      padding-top: 7rem;
+      padding-bottom: 3rem;
+    }
+
+    // right hand sidebar
+    .td-sidebar-toc {
+      height: unset;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 7rem;
+      padding-bottom: 0;
+
+      // the default theme makes the outer div stickey, but we use the inner div
+      position: relative;
+      top: unset;
+      overflow-y: unset;
+
+      .td-sidebar-toc__inner {
+        position: sticky;
+        top: 7rem;
+        height: calc(100vh - 7rem);
+
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+
+        // allow the toc to scroll
+        overflow-y: auto;
+      }
+
+      // add separator line before toc list
+      .td-toc {
+        padding-top: 1rem;
+        border-top: 0.1rem solid $border-color;
+
+        // fix the padding of the toc list
+        ul {
+          margin-bottom: 0;
+        }
+
+        a {
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// prevent sidebar from appearing over the footer
+// --------------------------------------------------
+footer {
+  z-index: 1000;
+}
+
+// --------------------------------------------------
+// remove whitespace after footer
+// --------------------------------------------------
+footer {
+  min-height: auto;
+
+  p {
+    margin-bottom: 0.4rem;
+    line-height: 1rem;
+  }
+
+  small {
+    font-size: 0.7rem;
+  }
+}
+
+// --------------------------------------------------
+// sidebar styling
+// --------------------------------------------------
+.td-sidebar {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 2rem;
+  }
+}
+
+// sidebar search styling
+.td-sidebar__search {
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+
+  margin: 0;
+
+  .td-search {
+    width: 100%;
+  }
+
+  .td-search__icon {
+    color: $search-icon-color;
+  }
+
+  .td-search__input {
+    text-indent: 1.75rem;
+    background-color: $search-bg-color;
+    border: 2px solid $search-border-color;
+    box-shadow: 0px 2px 8px 0px $search-shadow-color;
+
+    &::placeholder {
+      color: $search-placeholder-color;
+    }
+
+    &.form-control:focus {
+      border-color: $search-border-focus-color;
+      box-shadow: 0px 2px 8px 0px $search-shadow-color;
+    }
+  }
+
+  .td-sidebar__toggle {
+    color: $body-color;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    .td-search {
+      padding-right: 0.25rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: 0;
+    .td-search {
+      padding-right: 0.5rem;
+    }
+  }
+}
+
+.td-sidebar-nav {
+  padding-left: 0;
+  padding-right: 0.75rem;
+  padding-top: 0;
+  padding-bottom: 2rem;
+
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+  // extra padding on mobile (in collapsible menu)
+  @include media-breakpoint-down(sm) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1.5rem;
+
+    margin-top: 0.5rem;
+  }
+
+  // make sidebar text work with dark theme
+  &__section-title {
+    a {
+      color: $td-sidebar-section-title-color;
+    }
+  }
+
+  .td-sidebar-link {
+    &__page {
+      color: $td-sidebar-link-color;
+    }
+  }
+}
+
+// reduce padding for the root level of the sidebar
+nav.foldable-nav .with-child,
+nav.foldable-nav .without-child {
+  padding-left: 0;
+  position: unset;
+}
+
+// style the sidebar like a folder tree
+nav.foldable-nav {
+  // apply styles to the main sidebar sections
+  .ul-1 {
+    // reduce padding of the sidebar links
+    .with-child {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .without-child {
+      padding-left: 0.7rem;
+      position: relative;
+    }
+
+    // make the active link bold
+    a.active {
+      color: $primary !important;
+      font-weight: 700 !important;
+    }
+
+    // bold the chain of pages leading to the active page
+    .with-child.active-path > label a {
+      font-weight: 700;
+    }
+
+    // show a border on the left of open sections
+    .with-child > input:checked ~ ul {
+      border-left: 0.1rem dotted $td-sidebar-left-stroke-color;
+
+      // round the bottom left corner
+      border-bottom-left-radius: 1rem;
+
+      // position the border correctly
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      margin-left: -0.77rem;
+    }
+
+    // color the border for the active path
+    .with-child.active-path > ul {
+      border-left: 0.1rem solid $td-sidebar-left-stroke-active-color !important;
+    }
+
+    // make the arrow for the non-active sections gray
+    .with-child > label:before {
+      color: $td-sidebar-closed-color;
+    }
+
+    // make the arrow for open non-active sections gray
+    .with-child > input:checked ~ label:before {
+      color: $td-sidebar-closed-color;
+    }
+
+    // make the arrow for open active sections blue
+    .with-child.active-path > input:checked ~ label:before {
+      color: $primary;
+    }
+  }
+}
+
+// prevent overflow of long names in sidebar
+.td-sidebar-nav__section > ul {
+  overflow-wrap: break-word;
+}
+
+// --------------------------------------------------
+// fix the arrow transform animation on desktop
+// --------------------------------------------------
+@media (hover: hover) and (pointer: fine) {
+  nav.foldable-nav {
+    .ul-1 .with-child > label:hover:before {
+      transition: transform 0.3s;
+    }
+
+    .ul-1 .with-child > input:checked ~ label:hover:before {
+      transition: transform 0.3s;
+    }
+  }
+}
+
+// --------------------------------------------------
+// custom navbar with larger logo, dropdown on mobile
+// --------------------------------------------------
+.navbar-bg-onscroll {
+  background: $navbar-bg !important;
+}
+
+.td-navbar {
+  min-height: auto;
+
+  background-color: $navbar-bg;
+
+  .vr {
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+    opacity: 0.15;
+  }
+
+  .navbar-brand {
+    margin: 0;
+    padding: 0;
+
+    .text-uppercase {
+      display: none;
+    }
+
+    .navbar-logo {
+      svg, img {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        z-index: 33;
+        padding: 10px;
+        margin: 0;
+        height: 95px;
+        background: $navbar-logo-bg;
+        border: 2px solid $navbar-logo-border;
+        border-top: none;
+
+        @include media-breakpoint-down(md) {
+          width: 80px;
+          height: auto;
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+  // this filler ensures that the navbar links are on the right
+  // and the links do not go under the logo (which uses absolute positioning)
+  .filler {
+    flex-grow: 1;
+    min-width: 120px;
+
+    @include media-breakpoint-down(md) {
+      min-width: 100px;
+    }
+  }
+
+  // extra padding on mobile (in collapsible menu)
+  @include media-breakpoint-down(sm) {
+    .navbar-collapse {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+
+  .navbar-nav {
+    // allow wrapping of navbar links
+    white-space: normal;
+
+    .dropdown-toggle {
+      white-space: normal;
+      padding-right: 0.25rem;
+    }
+
+    // prevent long links from taking up too much space
+    @include media-breakpoint-between(sm, lg) {
+      .nav-item.long-content {
+        font-size: 70%;
+      }
+    }
+
+    .dropdown {
+      min-width: unset;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 0.875rem;
+    }
+
+    // reduce padding for theme icon
+    .theme-icon-active i {
+      padding-right: 0.25rem !important;
+    }
+  }
+}
+
+// --------------------------------------------------
+// Home page
+// --------------------------------------------------
+.td-home {
+  // make sure title is white
+  .display-1 {
+    color: $white;
+    font-size: 3.5rem;
+  }
+
+  // dont color the outer div with the sidebar color
+  // as there is no sidebar on the main page
+  .td-outer {
+    background-color: unset;
+  }
+
+  // animate the background color change of navbar
+  .td-navbar {
+    transition: background-color 75ms linear;
+  }
+
+  .card-deck,
+  .card-columns {
+    .card {
+      border: 1px solid $home-card-body-bg;
+    }
+
+    .card-img-top {
+      object-fit: scale-down;
+      background-color: $home-card-top-bg;
+    }
+
+    .card-title {
+      color: $home-card-body-title-color;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding-bottom: 1rem;
+    }
+
+    .card-body {
+      color: $home-card-body-color;
+      background-color: $home-card-body-bg;
+
+      // make links in the card have a dotted underline
+      a {
+        color: lighten($primary, 15%);
+        border-bottom: 0.1em dotted lighten($primary, 15%);
+
+        font-weight: 600;
+        padding: 0 0.1em 0.05em 0.1em;
+        text-decoration: none;
+
+        &:hover {
+          border-bottom: 1px dotted $white;
+          color: $white !important;
+        }
+      }
+    }
+  }
+
+  .collaborator-logo {
+    pointer-events: none;
+    user-select: none;
+    height: 6rem;
+    width: 100%;
+  }
+
+  .section-head {
+    color: $home-section-title-color;
+
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.8;
+
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .image {
+    display: block;
+  }
+
+  .image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .image.left,
+  .image.right {
+    max-width: 45%;
+  }
+
+  .image.left::after,
+  .image.right::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  .image.left {
+    float: left;
+    margin: 0 1.5em 1.5em 0;
+  }
+
+  .image.right {
+    float: right;
+    margin: 0 0 1.5em 1.5em;
+  }
+
+  #overview, #pageContent, #cncf, #community, #collaborator {
+    padding: 4rem 0 4rem 0 !important;
+  }
+
+  #overview p,
+  #community p {
+    font-size: 1.125em;
+  }
+
+  #overview {
+    border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #collaborator {
+    border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #pageContent .container {
+    max-width: 70rem;
+  }
+
+  #community {
+    border-top: 0.1rem solid $home-section-border-color;
+    border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #cncf {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .cncf-title {
+      color: $cncf-title-color;
+      font-size: 1.15rem;
+      font-weight: bold;
+      padding-top: 1.6rem;
+    }
+  }
+
+  #pageContent .lead {
+    margin: 0 1.5em 3em 1.5em;
+  }
+
+  #pageContent .lead > .image {
+    padding: 0 1.5em;
+    max-width: 60%;
+    margin-bottom: 1.5em;
+  }
+
+  #pageContent .lead > .text p {
+    font-size: 1em;
+  }
+
+  @include media-breakpoint-up(sm) {
+    #overview,
+    #community {
+      font-size: 1.125em;
+    }
+    #pageContent .lead > .image {
+      max-width: 35%;
+      margin-bottom: 3em;
+    }
+    #pageContent .lead > .text p {
+      font-size: 1em;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    #pageContent .lead {
+      margin-top: 1em;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+    }
+    #pageContent .lead > * {
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+    }
+    #pageContent .lead > .image {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    #pageContent .lead > .image > img {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    #pageContent .lead > .text {
+      -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+    }
+    #pageContent .lead:nth-child(2n + 0) > .image {
+      -ms-flex-order: 2;
+      order: 2;
+    }
+    #pageContent .lead:nth-child(2n + 0) > .text {
+      -ms-flex-order: 1;
+      order: 1;
+    }
+  }
+}
+
+// --------------------------------------------------
+// distributions/install page
+// --------------------------------------------------
+.distributions-table thead {
+  background-color: $navbar-bg;
+  color: $white;
+}
+
+// --------------------------------------------------
+// 404 page
+// --------------------------------------------------
+.error-page {
+  margin-top: 120px;
+
+  ul {
+    margin-bottom: 50px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 0;
+  }
+
+  li {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  @include media-breakpoint-between(md, lg) {
+    margin-top: 100px;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: 50px;
+  }
+}
+
+// --------------------------------------------------
+// for tabbed code blocks
+// --------------------------------------------------
+.nav-tabs {
+  border-bottom: none !important;
+}
+
+.td-content > ul li,
+.td-content > ol li.nav-item {
+  margin-bottom: 0px;
+}
+
+.td-content .tab-content .highlight {
+  margin: 0;
+}
+
+.tab-pane {
+  border-radius: 0.25rem;
+  padding: 0 16px 16px;
+
+  border: 1px solid #dee2e6;
+
+  &:first-of-type.active {
+    border-top-left-radius: 0;
+  }
+}
+
+// --------------------------------------------------
+// for feedback partial
+// --------------------------------------------------
+.feedback--answer {
+  display: inline-block;
+}
+
+.feedback--answer-no {
+  margin-left: 1em;
+}
+
+.feedback--response {
+  display: none;
+  margin-top: 1em;
+}
+
+.feedback--response__visible {
+  display: block;
+}
+
+// --------------------------------------------------
+// code styling
+// --------------------------------------------------
+.td-content {
+  // set the background color of inline code
+  p code,
+  li > code,
+  table code {
+    background-color: $code-inline-bg;
+  }
+
+  // set the background color of code blocks
+  .highlight pre {
+    background-color: $code-block-bg;
+  }
+
+  // ensure links with code in them have the correct color
+  a > code {
+    color: unset;
+  }
+}
+
+// --------------------------------------------------
+// alert styling
+// --------------------------------------------------
+.alert {
+  background-color: $alert-bg;
+}

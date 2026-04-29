@@ -1,0 +1,183 @@
+baseURL = "/"
+title = "multiPhysicsFoam"
+description = "A modular multiphysics framework for interface and volumetric coupled multiphysics based on OpenFOAM"
+
+enableRobotsTXT = true
+
+theme = ["docsy"]
+
+###############################################################################
+# Docsy
+###############################################################################
+enableGitInfo = true
+
+# language settings
+contentDir = "content/en"
+defaultContentLanguage = "en"
+# tell Hugo not to include the /en/ element in the URL path for English docs
+defaultContentLanguageInSubdir = false
+# useful when translating
+enableMissingTranslationPlaceholders = true
+# disable taxonomies
+disableKinds = ["taxonomy"]
+# deprecated directories
+ignoreFiles = []
+
+# Override module mounts, mainly so that we can update fontawesome.
+# NOTE: this is based on docsy's config.yaml from v0.6.0, and must be updated if the docsy theme ever is.
+#       https://github.com/google/docsy/blob/v0.6.0/config.yaml#L24-L38
+[module]
+
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+
+  [[module.mounts]]
+    source = "node_modules/bootstrap"
+    target = "assets/vendor/bootstrap"
+
+  [[module.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free"
+    target = "assets/vendor/Font-Awesome"
+
+  [[module.mounts]]
+    source = "i18n"
+    target = "i18n"
+
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+  [[module.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free/webfonts"
+    target = "static/webfonts"
+
+###############################################################################
+# Hugo - Top-level navigation (horizontal)
+###############################################################################
+[menu]
+  [[menu.main]]
+    name = "Documentation"
+    weight = -102
+    pre = "<i class='fas fa-book pr-2'></i>"
+    url = "/docs/"
+  [[menu.main]]
+    name = "GitHub"
+    weight = -99
+    pre = "<i class='fab fa-github pr-2'></i>"
+    url = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+  [[menu.main]]
+    name = "Bitbucket"
+    weight = -98
+    pre = "<i class='fab fa-bitbucket pr-2'></i>"
+    url = "https://bitbucket.org/hmarschall/multiphysicsfoam"
+
+###############################################################################
+# Docsy - Output Formats
+###############################################################################
+[outputs]
+section = [ "HTML" ]
+
+###############################################################################
+# Docsy - Goldmark markdown parser
+###############################################################################
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+    # For MathJax
+    # https://gohugo.io/content-management/mathematics/#setup
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
+  [markup.highlight]
+    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+    noClasses = false
+    guessSyntax = "true"
+
+###############################################################################
+# Docsy - DrawIO configuration
+###############################################################################
+[params.drawio]
+enable = true
+
+###############################################################################
+# Docsy - Image processing configuration
+###############################################################################
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 75
+  anchor = "smart"
+
+###############################################################################
+# Docsy - Language configuration
+###############################################################################
+[languages]
+  [languages.en]
+    title = "multiPhysicsFoam"
+    languageName ="English"
+    weight = 1
+
+    [languages.en.params]
+      description = "A modular multiphysics framework for interface and volumetric coupled multiphysics based on OpenFOAM"
+
+###############################################################################
+# Docsy - Site Parameters
+###############################################################################
+[params]
+  github_repo = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+  github_project_repo = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+
+  RSSLink = "/index.xml"
+  author = "multiPhysicsFoam Authors"
+  github = "multiPhysicsFoam"
+
+  copyright = "The multiPhysicsFoam Authors."
+
+  # Disable MathJax by default
+  # NOTE: enable it per-page with `mathjax: true` in front matter
+  mathjax = false
+
+  # Disable Swagger UI by default
+  # NOTE: enable it per-page with `swaggerui: true` in front matter
+  swaggerui = false
+
+  # User interface configuration
+  [params.ui]
+    # Enable the logo
+    navbar_logo = true
+    # Enable to show the side bar menu in its compact state.
+    sidebar_menu_compact = true
+    # Enable the search box in the side bar.
+    sidebar_search_disable = false
+    # Set to true to disable breadcrumb navigation.
+    breadcrumb_disable = false
+    # Show expand/collapse icon for sidebar sections
+    sidebar_menu_foldable = true
+    # Disable about button in footer
+    footer_about_disable = true
+
+      [params.ui.feedback]
+        enable = false
+
+  # Links in footer
+  [params.links]
+    [[params.links.user]]
+      name = "GitHub"
+      url = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+      icon = "fab fa-github"
+      desc = "Development takes place here!"
+    [[params.links.user]]
+      name = "Bitbucket"
+      url = "https://bitbucket.org/hmarschall/multiphysicsfoam"
+      icon = "fab fa-bitbucket"
+      desc = "Source repository on Bitbucket"

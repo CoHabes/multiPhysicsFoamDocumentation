@@ -1,0 +1,146 @@
++++
+title = "multiPhysicsFoam"
++++
+
+<!-- Hero section -->
+{{<blocks/cover title="multiPhysicsFoam" subtitle="A modular multiphysics framework for interface and volumetric coupled simulations based on OpenFOAM." image_anchor="center" color="dark">}}
+<div class="mt-5">
+  <div class="mx-auto">
+    <a class="btn btn-lg btn-outline-info mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/getting-started/">
+      Get Started
+      <i class="fas fa-arrow-alt-circle-right ml-1"></i>
+    </a>
+    <a class="btn btn-lg btn-outline-info mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/tutorials">
+      Tutorials
+      <i class="fas fa-book-open ml-1"></i>
+    </a>
+    <a class="btn btn-lg btn-outline-info mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/developer-guide/contributing/">
+      Contribute
+      <i class="fas fa-pencil-alt ml-1"></i>
+    </a>
+  </div>
+  <div class="mt-2">
+    <a class="btn btn-link text-info" href="#overview">
+      <i class="fa-solid fa-circle-chevron-down" style="font-size: 350%"></i>
+    </a>
+  </div>
+</div>
+{{</blocks/cover>}}
+
+<div id="overview" class="text-center">
+  <div class="container">
+    <h3 class="section-head">
+      <span class="border-bottom pb-2">What is multiPhysicsFoam?</span>
+    </h3>
+    <p class="mx-auto col-11 col-xl-7 px-0">
+      multiPhysicsFoam is a modular, open-source multiphysics framework built on top of
+      <a href="https://www.openfoam.com/" target="_blank">OpenFOAM</a>.
+      <br><br>
+      It is a modular, extensible simulation framework designed for solving coupled multiphysics problems involving multiple interacting regions. Built on top of OpenFOAM, it unifies solid, fluid, and interface physics into a single consistent solver architecture—allowing engineers and researchers to model complex thermal, fluid, chemical, and electrochemical systems with ease and precision. The framework supports both monolithic and partitioned coupling approaches, enabling robust and efficient simulation of conjugate heat transfer, multiphase flows with deformable interfaces, compressible-incompressible interactions, and even electrochemical transport in applications such as fuel cells and batteries. With clear region-level separation, reusable physics models, and full automation support through Python APIs, multiRegionFoam makes it easy to configure and run highly customized multiphysics cases at scale. Whether validating fundamental physical phenomena or building industrial-scale workflows, this solver infrastructure is designed to streamline development, reduce boilerplate, and maintain solver consistency across a wide range of physical domains. The examples presented in this documentation illustrate the breadth and capability of the framework across canonical and real-world applications. Explore the use cases, learn how to set up region-coupled simulations, and start building your own multiphysics models with confidence.
+    </p>
+  </div>
+</div>
+
+<div id="pageContent">
+  <div class="container">
+    <div class="card-deck">
+      <div class="card">
+        <a>
+          <img
+            src="/docs/images/logos/Modular_Framework.png"
+            class="card-img-top"
+            draggable="false"
+            style="padding: 1rem;  height: 250px;"
+            alt="Spark Operator Logo"
+          />
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">Modular Architecture</h5>
+          <p class="card-text">
+            Each physics model is an independent module. Mix and match solvers and coupling
+            strategies without modifying the core framework.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <a>
+          <img
+            src="/docs/images/logos/OpenFOAM_logo.png"
+            class="card-img-top"
+            draggable="false"
+            style="padding: 1rem;  height: 250px;"
+            alt="Spark Operator Logo"
+          />
+        </a>
+        <div class="card-body bg-primary-dark">
+          <div class="card-title">OpenFOAM Native</div>
+          <p class="card-text">
+            Built directly on OpenFOAM, leveraging its mature finite volume discretization,
+            parallel I/O, and mesh handling infrastructure.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+          <a>
+          <img
+            src="/docs/images/logos/Coupling.png"
+            class="card-img-top"
+            draggable="false"
+            style="padding: 1rem;  height: 250px;"
+            alt="Spark Operator Logo"
+          />
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">Interface &amp; Volumetric Coupling</h5>
+          <p class="card-text">
+            First-class support for both interface-coupled (e.g. FSI, CHT) and
+            volumetric multiphysics (e.g. reactive flows, electromagnetic coupling).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="collaborator" class="text-center">
+  <div class="container">
+    <h3 class="section-head">
+      <span class="border-bottom pb-2">Collaboration of</span>
+    </h3>
+
+    <div class="mb-5 d-flex flex-wrap align-content-between align-items-center justify-content-center user-select-none">
+
+       <!-- IANUS (Organization -->
+      <div class="px-5 py-4">
+        <a href="https://ianus-simulation.de/en/" target="_blank" rel="noopener">
+          <img class="collaborator-logo show_dark-only" src="/docs/images/logos/IANUS_Logo_white.png" alt="IANUS Logo">
+        </a>
+      </div>
+
+
+      <!-- TUD (University) -->
+      <div class="px-5 py-4">
+        <a href="https://www.mathematik.tu-darmstadt.de/cmf/cmf_home/index.de.jsp" target="_blank" rel="noopener">
+          <img class="collaborator-logo show_dark-only" src="/docs/images/logos/TUDa_Logo_white.png" alt="TUD Logo">
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="community" class="text-center">
+  <div class="container">
+    <h3 class="section-head">
+      <span class="border-bottom pb-2">Join our Community</span>
+    </h3>
+    <p class="mx-auto col-md-7 px-0">
+      We are an open and welcoming community of software developers, mathematicians, and CFD enthusiasts!
+    </p>
+    <div>
+      <a  class="btn btn-lg btn-outline-primary" href="https://bitbucket.org/hmarschall/multiphysicsfoam" target="_blank" rel="noopener">
+        Contribution <i class="fab fa-bitbucket ml-1"></i>
+      </a>
+    </div>
+  </div>
+</div>

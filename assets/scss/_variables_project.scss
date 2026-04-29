@@ -1,0 +1,37 @@
+/*
+Add styles or override the theme's variables here.
+*/
+
+html.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+// Bootstrap container-max-widths
+// NOTE: we increase the max-widths to make the content wider compared to the Bootstrap defaults
+$container-max-widths: (
+  sm: 768px, // default: 540px, breakpoint: 576px
+  md: 992px, // default: 720px, breakpoint: 768px
+  lg: 1200px, // default: 960px, breakpoint: 992px
+  xl: 1440px // default: 1140px, breakpoint: 1200px
+);
+
+// multiPhysicsFoam colors (from logo)
+$mpf-blue: #2B86E1;        // accent blue (logo highlight)
+$mpf-darkblue: #196EC1;    // primary blue (logo body)
+$mpf-darkblue-alt: #0f4a8a; // darker shade for backgrounds/dark elements
+
+// Theme colors
+$primary: $mpf-blue;
+$secondary: #fff;
+$dark: $mpf-darkblue-alt;
+$info: #87ceeb;
+$light: #dee2e6;
+
+// Nav bar colors
+$white: #fff;
+$navbar-dark-color: rgba($white, 1);
+$navbar-dark-hover-color: rgba($white, 0.75);
+$navbar-dark-active-color: $navbar-dark-color;
+
+// Fonts
+$google_font_family: "Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" !default;
