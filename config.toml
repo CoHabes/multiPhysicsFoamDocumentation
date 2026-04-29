@@ -97,7 +97,7 @@ section = [ "HTML" ]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)']]
+          inline = [['\(', '\)'], ['$', '$']]
 
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html

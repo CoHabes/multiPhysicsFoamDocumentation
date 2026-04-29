@@ -3,7 +3,11 @@ title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 1
 description: >
-  Install multiPhysicsFoam and run your first simulation.
+  Install multiRegionFoam and run your first simulation.
 ---
 
-This section covers installation, prerequisites, and a quick-start tutorial.
+This section walks you through the prerequisites and installation of `multiRegionFoam`.
+Follow the steps below to get up and running.
+
+- [Prerequisites](prerequisites/) — required software before installing `multiRegionFoam`
+- [Installation](installation/) — download, compile, and verify the installation
