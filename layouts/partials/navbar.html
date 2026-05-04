@@ -10,7 +10,7 @@
     {{- /**/ -}}
     <span class="navbar-brand__logo navbar-logo">
       {{- if ne .Site.Params.ui.navbar_logo false -}}
-        <img src="/favicon.svg" alt="{{ .Site.Title }}" />
+        <img src="{{ "favicon.svg" | relURL }}" alt="{{ .Site.Title }}" />
       {{- end -}}
     </span>
     {{- /**/ -}}

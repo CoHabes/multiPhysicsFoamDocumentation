@@ -1,5 +1,4 @@
 baseURL = "https://CoHabes.github.io/multiPhysicsFoamDocumentation/"
-canonifyURLs = true
 title = "multiPhysicsFoam"
 description = "A modular multiphysics framework for interface and volumetric coupled multiphysics based on OpenFOAM"
 
