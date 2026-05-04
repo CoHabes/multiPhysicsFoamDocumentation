@@ -1,6 +1,6 @@
 {{- if .IsHome }}
   <!-- NOTE: the homepage uses a hand-made social image -->
-  {{- $img := resources.Get "/social/social_home.png" }}
+  {{- $img := resources.Get "/social/social_icon.png" }}
 
   <!-- Fingerprint the image to get the hash -->
   {{- $img := $img | resources.Fingerprint "md5" }}
@@ -22,7 +22,7 @@
 
 {{- else }}
   <!-- NOTE: all other pages use dynamically generated social images -->
-  {{- $base := resources.Get "/social/social_base.png" }}
+  {{- $base := resources.Get "/social/social_icon.png" }}
   {{- $font := resources.Get "/fonts/Inter-Medium.ttf"}}
 
   <!-- Generate the image text by appending all but the first two ancestors (which are the same for all) -->

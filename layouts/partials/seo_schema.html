@@ -18,7 +18,7 @@
       "dateModified" : {{ .Lastmod }},
       "url" : {{ .Permalink }},
       "wordCount" : {{ .WordCount }},
-      "keywords" : [ {{ if isset .Params "tags" }}{{ range .Params.tags }}"{{ . }}",{{ end }}{{ end }}"Kubeflow" ]
+      "keywords" : [ {{ if isset .Params "tags" }}{{ range .Params.tags }}"{{ . }}",{{ end }}{{ end }}"multiPhysicsFoam", "OpenFOAM", "multiphysics" ]
   }
   {{- if gt (len .Ancestors) 1 }},
   {

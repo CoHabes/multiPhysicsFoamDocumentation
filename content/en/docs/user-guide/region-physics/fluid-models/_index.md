@@ -1,7 +1,7 @@
 ---
 title: "Fluid Models"
 linkTitle: "Fluid Models"
-weight: 2
+weight: 1
 description: >
   Available fluid models and their configuration.
 ---
