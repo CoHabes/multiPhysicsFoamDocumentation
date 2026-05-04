@@ -65,11 +65,11 @@ ignoreFiles = []
     weight = -102
     pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
-  [[menu.main]]
-    name = "GitHub"
-    weight = -99
-    pre = "<i class='fab fa-github pr-2'></i>"
-    url = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+  # [[menu.main]]  # GitHub mirror not yet available — uncomment when ready
+  #   name = "GitHub"
+  #   weight = -99
+  #   pre = "<i class='fab fa-github pr-2'></i>"
+  #   url = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
   [[menu.main]]
     name = "Bitbucket"
     weight = -98
@@ -134,8 +134,8 @@ enable = true
 # Docsy - Site Parameters
 ###############################################################################
 [params]
-  github_repo = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
-  github_project_repo = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+  # github_repo = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"          # uncomment when GitHub mirror is available
+  # github_project_repo = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"  # uncomment when GitHub mirror is available
 
   RSSLink = "/index.xml"
   author = "multiPhysicsFoam Authors"
@@ -171,11 +171,11 @@ enable = true
 
   # Links in footer
   [params.links]
-    [[params.links.user]]
-      name = "GitHub"
-      url = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
-      icon = "fab fa-github"
-      desc = "Development takes place here!"
+    # [[params.links.user]]  # GitHub mirror not yet available — uncomment when ready
+    #   name = "GitHub"
+    #   url = "https://github.com/multiPhysicsFoam/multiPhysicsFoam"
+    #   icon = "fab fa-github"
+    #   desc = "Development takes place here!"
     [[params.links.user]]
       name = "Bitbucket"
       url = "https://bitbucket.org/hmarschall/multiphysicsfoam"
