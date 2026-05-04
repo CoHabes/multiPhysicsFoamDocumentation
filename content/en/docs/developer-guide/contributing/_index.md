@@ -1,7 +1,7 @@
 ---
 title: "Contributing"
 linkTitle: "Contributing"
-weight: 3
+weight: 5
 description: >
   How to contribute to multiPhysicsFoam.
 ---

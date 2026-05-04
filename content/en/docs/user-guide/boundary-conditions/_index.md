@@ -1,7 +1,7 @@
 ---
 title: "Boundary Conditions"
 linkTitle: "Boundary Conditions"
-weight: 2
+weight: 4
 description: >
   Custom boundary conditions provided by multiPhysicsFoam.
 ---
