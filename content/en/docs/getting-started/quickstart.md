@@ -12,16 +12,7 @@ Source a [supported version of OpenFOAM](../installation-from-source/#supported-
 then download, build and test multiPhysicsFoam-v0.1:
 
 ```bash
-git clone --branch v0.1 https://github.com/multiPhysicsFoam/multiPhysicsFoam.git
-cd multiPhysicsFoam && ./Allwmake -j && cd tutorials && ./Alltest
-```
-
-The `-j` flag instructs `Allwmake` to use all available cores.
-
-Similarly, the latest  the `development` branch can be downloaded and compiled
- with
-
-```bash
-git clone --branch development https://github.com/multiPhysicsFoam/multiPhysicsFoam.git
-cd multiPhysicsFoam && ./Allwmake -j && cd tutorials && ./Alltest
+git clone https://github.com/multiPhysicsFoam/multiPhysicsFoam.git
+cd multiPhysicsFoam 
+./Allwmake #Follow the instructions given in the terminal
 ```

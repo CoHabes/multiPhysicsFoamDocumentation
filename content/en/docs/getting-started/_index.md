@@ -8,6 +8,3 @@ description: >
 
 This section walks you through the prerequisites and installation of `multiRegionFoam`.
 Follow the steps below to get up and running.
-
-- [Prerequisites](prerequisites/) — required software before installing `multiRegionFoam`
-- [Installation](installation/) — download, compile, and verify the installation

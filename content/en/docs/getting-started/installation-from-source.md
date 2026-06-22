@@ -18,31 +18,36 @@ the following OpenFOAM versions are supported:
 | multiPhysicsFoam version | OpenFOAM version                 |
 | ------------------------ | -------------------------------- |
 | multiPhysicsFoam-v0.1    | OpenFOAM-v2506                   |
-|                          | OpenFOAM-v2512                   |
 
-multiPhysicsFoam is primarily developed using the OpenFOAM.com variant of OpenFOAM
-(i.e., OpenFOAM-v2512); consequently, this is the recommended variant for using
+multiPhysicsFoam is developed using the OpenFOAM.com variant of OpenFOAM
+(i.e., OpenFOAM-v2506); consequently, this is the recommended variant for using
  multiPhysicsFoam.
 
 ### Optional fixes for the OpenFOAM installation
 
-The multiPhysicsFoam `Allwmake` script can optionally ask you to fix files in the main
- OpenFOAM/foam installation; by default, these checks are **not** performed. To
- enable these checks, set the `S4F_NO_FILE_FIXES` environmental variable to `0`
- before running the Allwmake script when [building multiPhysicsFoam](#building-multiPhysicsFoam),
+The multiPhysicsFoam `Allwmake` script will ask you to fix files in the main
+ OpenFOAM/foam installation. These checks will alwys be performed.
+ The fixes will not break you OpenFOAM installation nor any other applications compiled
+ against you OpenFOAM version. You will get clear information on what to do when running `Allwmake` for the first time
  e.g.
 
 ```bash
-> export S4F_NO_FILE_FIXES=0 && ./Allwmake -j
+> Check filesToReplace
+
+******** PLEASE FIX THIS ***********
+You should replace the file '/usr/lib/openfoam/openfoam2512/src/OpenFOAM/fields/GeometricFields/GeometricField/GeometricField.H' with 'filesToReplace/GeometricField.H'
+
+You can do it by running the following commands:
+    cp filesToReplace/GeometricField.H /usr/lib/openfoam/openfoam2512/src/OpenFOAM/fields/GeometricFields/GeometricField/
+    wmake libso /usr/lib/openfoam/openfoam2512/src/OpenFOAM
+If you have not compiled OpenFOAM from scratch you might have to recompile it as a whole (sorry for that)
+
+These actions will not break your working foam-extend installation.
+It will just fix some minor bugs in the listed file which need to 
+be fixed in order to make multiPhysicsFoam work propperly.
+************************************
+
 ```
-
-To make these fixes, follow the instructions from the `Allwmake` script when
-[building multiPhysicsFoam](#building-multiPhysicsFoam).
-
-See the upstream
-[Optional Fixes page](https://github.com/multiPhysicsFoam/multiPhysicsFoam/blob/master/optionalFixes/README.md)
-for further details
-on these optional changes.
 
 ---
 
@@ -51,7 +56,7 @@ on these optional changes.
 > These dependencies are optional. You can skip them if you want to get up and
  running quickly.
 
-Beyond a working version of OpenFOAM or foam-extend, multiPhysicsFoam does not have
+Beyond a working version of OpenFOAM, multiPhysicsFoam does not have
 any **mandatory** dependencies; however, several **optional** dependencies are
 required to use the complete set of functionalities:
 
@@ -68,11 +73,8 @@ the `cartesianMesh` executable is not found within the `$PATH` then the `Allrun`
 script within these tutorials will exit.
 
 ```tip
-- **foam-extend**: cfmesh is included in foam-extend.
 - **OpenFOAM.com (OpenCFD/ESI version)**: cfmesh is provided as an optional
    submodule: see [https://develop.openfoam.com/Community/integration-cfmesh](https://develop.openfoam.com/Community/integration-cfmesh).
-- **OpenFOAM.org (Foundation version)**: the free version of cfmesh is currently
-   not compatible with OpenFOAM.org.
 ```
 
 #### gnuplot
@@ -116,25 +118,27 @@ The latest nightly build development branch can be downloaded with
 
 ### Building multiPhysicsFoam
 
-Before building multiPhysicsFoam, a compatible version of OpenFOAM or foam-extend
+Before building multiPhysicsFoam, a compatible version of OpenFOAM
 should be sourced: see the [table above](#supported-versions-of-openfoamfoam). To
 build multiPhysicsFoam, enter the multiPhysicsFoam directory and execute the included
 Allwmake script, e.g.
 
 ```bash
 > cd multiPhysicsFoam
-> ./Allwmake -j 2>&1 | tee log.Allwmake
+> ./Allwmake 2>&1 | tee log.Allwmake
 ```
 
-Depending on your hardware, you can expect this build to last about 5 minutes.
+Depending on your hardware, you can expect this build to last about 5-10 minutes.
 
 If multiPhysicsFoam is built successfully, you will be presented with the following
 message:
 
 ```bash
-There were no build errors: enjoy multiPhysicsFoam!
-To test the installation, run:
-    > cd tutorials && ./Alltest
+There were no build errors: enjoy multiPhysicsFoam
+
+To test the installation test any of the provided tutorials, eg:
+    > cd tutorials/conjugateHeatTransfer/flowOverHeatedPlate 
+    > ./Allrun -p -P
 ```
 
 If the build encounters errors, you will receive the following message:
@@ -151,45 +155,7 @@ You can examine the source of the errors in the `log.Allwmake` file within the
 multiPhysicsFoam parent directory.
 Alternatively, if you believe you have encountered a bug, please create a new
 issue at
-[https://github.com/multiPhysicsFoam/multiPhysicsFoam/issues](https://github.com/multiPhysicsFoam/multiPhysicsFoam/issues).
-
----
-
-### Testing the Installation
-
-As instructed, after a successful build, you can test the tutorials using the
-following commands, executed from the multiPhysicsFoam parent directory.
-
-```bash
-> cd tutorials && ./Alltest
-```
-
-If the tests pass, you will receive the message:
-
-```bash
-All tests passed: enjoy multiPhysicsFoam.
-```
-
-This means your multiPhysicsFoam installation is working as expected.
-
-If any of the tests fail, you will receive the message:
-
-```bash
-The multiPhysicsFoam solver failed in the following cases:
-<LIST OF FAILING TUTORIALS>
-```
-
-or if the errors do not come from the multiPhysicsFoam calls but elsewhere
-
-```bash
-The following commands failed:
-<LIST OF FAILING COMMANDS AND TUTORIALS>
-```
-
-You can expect these _smoke-test_ tests to last a few minutes.
-These _smoke tests_ just check that all cases can be solved for one time-step
- or iteration without an error; however, the values of the results are not
- checked.
+[https://bitbucket.org/hmarschall/multiphysicsfoam/issues?status=new&status=open&status=submitted&is_spam=!spam](https://bitbucket.org/hmarschall/multiphysicsfoam/issues?status=new&status=open&status=submitted&is_spam=!spam).
 
 ---
 
