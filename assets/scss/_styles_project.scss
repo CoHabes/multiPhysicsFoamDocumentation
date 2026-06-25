@@ -490,7 +490,9 @@ nav.foldable-nav {
   // make sure title is white
   .display-1 {
     color: $white;
-    font-size: 3.5rem;
+    // responsive: scales with viewport width, clamped between
+    // 2rem (mobile) and 3.5rem (the previous fixed desktop size)
+    font-size: clamp(2rem, 8vw, 3.5rem);
   }
 
   // dont color the outer div with the sidebar color
