@@ -1,6 +1,6 @@
 ---
-title: "Potential Fluid"
-linkTitle: "Potential Fluid"
+title: "potentialFluid"
+linkTitle: "potentialFluid"
 weight: 4
 description: >
   Single-region cases using the potentialFluid region type.

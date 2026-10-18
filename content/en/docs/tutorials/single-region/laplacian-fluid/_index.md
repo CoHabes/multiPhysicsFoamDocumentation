@@ -1,6 +1,6 @@
 ---
-title: "Laplacian Fluid"
-linkTitle: "Laplacian Fluid"
+title: "laplacianFluid"
+linkTitle: "laplacianFluid"
 weight: 3
 description: >
   Single-region cases using the laplacianFluid region type.

@@ -1,6 +1,6 @@
 ---
-title: "Inter Fluid"
-linkTitle: "Inter Fluid"
+title: "interFluid"
+linkTitle: "interFluid"
 weight: 2
 description: >
   Single-region cases using the interFluid region type.
