@@ -16,4 +16,4 @@ The tutorials are organized by physics category, matching the structure of the
 | [Electrochemistry](electrochemistry/) | `NTGKBatteryWithTabs` |
 | [Fluid-Structure Interaction](fluid-structure-interaction/) | `beamInCrossFlow`, `HronTurekFsi3` |
 | [Multiphase Flow](multiphase-flow/) | `2dRisingBubble`, `3dDuineveldRisingBubble`, `3dOscillatingBubble` |
-| [Single Region](single-region/) | `pitzDaily`, `mixerVesselAMI2D` |
+| [Single Region](single-region/) | `pitzDaily`, `mixerVesselAMI2D`, `damBreak`, `flange`, `cylinder`, `pitzDaily` (potential flow), `obliqueShock` |
