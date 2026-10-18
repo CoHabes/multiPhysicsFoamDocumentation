@@ -30,9 +30,7 @@ $$
 ### Momentum
 
 $$
-\frac{\partial \left(\rho\mathbf{U}\right)}{\partial t}
-+ \nabla \cdot \left(\rho\mathbf{U}\mathbf{U}\right)
-- \nabla \cdot \mathbf{R}
+\frac{\partial \left(\rho\mathbf{U}\right)}{\partial t} + \nabla \cdot \left(\rho\mathbf{U}\mathbf{U}\right) - \nabla \cdot \mathbf{R}
 = -\nabla p + \mathbf{S}_U
 $$
 
@@ -46,12 +44,7 @@ energy $e$, selected by the `energy` keyword in `thermophysicalProperties`.
 With $K = \tfrac{1}{2}|\mathbf{U}|^2$:
 
 $$
-\frac{\partial \left(\rho h\right)}{\partial t}
-+ \nabla \cdot \left(\rho\mathbf{U}h\right)
-+ \frac{\partial \left(\rho K\right)}{\partial t}
-+ \nabla \cdot \left(\rho\mathbf{U}K\right)
-- \frac{\partial p}{\partial t}
-- \nabla \cdot \left(\alpha_\text{eff}\nabla h\right)
+\frac{\partial \left(\rho h\right)}{\partial t} + \nabla \cdot \left(\rho\mathbf{U}h\right) + \frac{\partial \left(\rho K\right)}{\partial t} + \nabla \cdot \left(\rho\mathbf{U}K\right) - \frac{\partial p}{\partial t} - \nabla \cdot \left(\alpha_\text{eff}\nabla h\right)
 = S_h
 $$
 
@@ -119,10 +112,7 @@ The region implements the `regionType` PIMPLE interface
    non-orthogonal loop:
 
 $$
-\frac{\partial \rho}{\partial t}
-+ \psi\,\frac{\partial p'}{\partial t}
-+ \nabla\cdot\phi_{HbyA}
-- \nabla\cdot\left(\rho\, r_{AU}\,\nabla p\right) = S_p
+\frac{\partial \rho}{\partial t} + \psi\,\frac{\partial p'}{\partial t} + \nabla\cdot\phi_{HbyA} - \nabla\cdot\left(\rho\, r_{AU}\,\nabla p\right) = S_p
 $$
 
    With `transonic yes` the flux is split into a convective part
@@ -295,8 +285,7 @@ For partitioned heat transfer, `setCoupledEqns` assembles a separate
 temperature equation (independent of the `fieldName` argument):
 
 $$
-\frac{\partial \left(\rho c_{pv} T\right)}{\partial t}
-+ \nabla\cdot\left(c_{pv,f}\,\phi\,T\right)
+\frac{\partial \left(\rho c_{pv} T\right)}{\partial t} + \nabla\cdot\left(c_{pv,f}\,\phi\,T\right)
 = \nabla\cdot\left(\kappa_\text{eff}\nabla T\right)
 $$
 

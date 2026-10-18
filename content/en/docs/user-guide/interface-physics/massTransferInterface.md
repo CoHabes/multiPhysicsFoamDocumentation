@@ -25,8 +25,7 @@ interface velocity). The two interface types are therefore used together.
 
 > **Status:** No tutorial uses this interface type, and the interface-tracking
 > fluid region it was written for (`interTrackFluid`) is disabled in
-> `src/multiRegionSystem/Make/files`. In the current code `correct()` is never
-> called, so $\dot m$ stays zero (see [Known Limitations](#known-limitations)).
+> `src/multiRegionSystem/Make/files`.
 > Treat this page as a description of the code, not of a validated feature.
 
 ## Interface Conditions
@@ -43,8 +42,7 @@ Both temperature fields are copied, the interface patch values are set to
 $T_{sat}$ (`fixedValue`), and the normal gradients are evaluated:
 
 $$
-q_{sat} = k_A \left.\frac{\partial T_A}{\partial n_A}\right|_{T_\Gamma = T_{sat}}
-        + k_B \left.\frac{\partial T_B}{\partial n_B}\right|_{T_\Gamma = T_{sat}}
+q_{sat} = k_A \left.\frac{\partial T_A}{\partial n_A}\right|_{T_\Gamma = T_{sat}} + k_B \left.\frac{\partial T_B}{\partial n_B}\right|_{T_\Gamma = T_{sat}}
 $$
 
 $$
@@ -68,18 +66,13 @@ continuity $T_{own} = T_{nbr}$; this interface type adds no temperature jump.
 ### Velocity jump (`regionCoupledMassTransferVelocityValue`)
 
 $$
-\mathbf{u}_{own} = \mathbf{u}_{nbr}
-+ \left(\frac{1}{\rho_{own}} - \frac{1}{\rho_{nbr}}\right)\dot m\, \mathbf{n}_\varepsilon
+\mathbf{u}_{own} = \mathbf{u}_{nbr} + \left(\frac{1}{\rho_{own}} - \frac{1}{\rho_{nbr}}\right)\dot m\, \mathbf{n}_\varepsilon
 $$
 
 ### Pressure jump (`regionCoupledMassTransferPressureValue`)
 
 $$
-p_{own} = p_{nbr}
-+ 2\,(\mu_{nbr} - \mu_{own})\,\nabla_s\!\cdot\mathbf{u}_s
-- \sigma \kappa
-+ (\rho_{nbr} - \rho_{own})\,\mathbf{g}\cdot(\mathbf{x}_f - \mathbf{x}_{ref})
-- \left(\frac{1}{\rho_{own}} - \frac{1}{\rho_{nbr}}\right)\dot m^2
+p_{own} = p_{nbr} + 2\,(\mu_{nbr} - \mu_{own})\,\nabla_s\!\cdot\mathbf{u}_s - \sigma \kappa + (\rho_{nbr} - \rho_{own})\,\mathbf{g}\cdot(\mathbf{x}_f - \mathbf{x}_{ref}) - \left(\frac{1}{\rho_{own}} - \frac{1}{\rho_{nbr}}\right)\dot m^2
 $$
 
 If the pressure field is called `pKin` (kinematic pressure), the same jump is
@@ -92,11 +85,7 @@ The diffusive flux $\mu_{own}\,\partial\mathbf{u}_{own}/\partial n$ is set to th
 negated normal component of the neighbour flux plus
 
 $$
-\mathbf{f}_{\sigma,t}
-- \mu_{own}\,\mathbf{n}\,\nabla_s\!\cdot\mathbf{u}_s
-+ (\mu_{nbr} - \mu_{own})\,(\nabla_s \mathbf{u}_s)\cdot\mathbf{n}
-+ \dot m \left[\left(\frac{\dot m}{\rho_{own}}\mathbf{n}_\varepsilon - \mathbf{u}_{own}\right)
-            - \left(\frac{\dot m}{\rho_{nbr}}\mathbf{n}_\varepsilon - \mathbf{u}_{nbr}\right)\right]
+\mathbf{f}_{\sigma,t} - \mu_{own}\,\mathbf{n}\,\nabla_s\!\cdot\mathbf{u}_s + (\mu_{nbr} - \mu_{own})\,(\nabla_s \mathbf{u}_s)\cdot\mathbf{n} + \dot m \left[\left(\frac{\dot m}{\rho_{own}}\mathbf{n}_\varepsilon - \mathbf{u}_{own}\right) - \left(\frac{\dot m}{\rho_{nbr}}\mathbf{n}_\varepsilon - \mathbf{u}_{nbr}\right)\right]
 $$
 
 where $\mathbf{f}_{\sigma,t}$ is the tangential part of the surface-tension
@@ -325,13 +314,15 @@ interfaceShadow
 
 ## Known Limitations
 
-- **`correct()` is never called (bug).** `regionInterfaceTypeList::update()`
-  only refreshes the interpolators and calls `info()`. It does not call
-  `regionInterfaceType::update()`, which is the only caller of `correct()`.
-  Nothing else calls `updateMDotS()`. In the current code $\dot m$ and
-  $q_{sat}$ therefore stay at their initial value of zero. *(Static code
-  reading, not confirmed by a run.)* This affects the `correct()` of every
-  interface type, not only this one.
+- **`correct()` runs on every coupled BC update.** `regionInterfaceTypeList::update()`
+  does not call `correct()`, but every `genericRegionCoupledJump`/`Flux`-derived
+  BC calls `rgInterface().update()` in its `updateCoeffs()`, which calls
+  `correct()`. `rgInterface()` resolves only the **first** entry of the BC's
+  `interfaceType` list, so $\dot m$ is updated only by BCs that list
+  `massTransferInterface` first (e.g. `regionCoupledPhaseChangeHeatFlux` on
+  `T`). The U/p mass-transfer BCs list `capillaryInterface` first and never
+  trigger it. When it does run, it runs once per such BC evaluation, i.e.
+  several times per coupling iteration.
 - **No runnable tutorial.** No tutorial uses `massTransferInterface`. The
   `interTrackFluid` region type it was written for is commented out in
   `src/multiRegionSystem/Make/files`.

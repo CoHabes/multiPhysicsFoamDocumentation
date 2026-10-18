@@ -38,6 +38,14 @@
 }
 
 // --------------------------------------------------
+// MathJax: scroll long display equations instead of overflowing the column
+// --------------------------------------------------
+mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+// --------------------------------------------------
 // reduce padding for small screens
 // --------------------------------------------------
 @include media-breakpoint-down(md) {
