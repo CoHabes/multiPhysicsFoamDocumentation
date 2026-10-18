@@ -27,12 +27,8 @@ through `fsiInterface`. On its own it does not solve anything (see
 The equation assembled in `setCoupledEqns()` is
 
 $$
-\rho \frac{\partial^2 \mathbf{D}}{\partial t^2}
-=
-\underbrace{\nabla \cdot \left( K \nabla \mathbf{D} \right)}_{\text{implicit}}
-- \underbrace{\nabla \cdot \left( K \nabla \mathbf{D} \right)}_{\text{explicit}}
-+ \nabla \cdot \left( J\, \mathbf{F}^{-1} \cdot \boldsymbol{\sigma} \right)
-+ \mathbf{S}_\text{stab}
+\rho \frac{\partial^2 \mathbf{D}}{\partial t^2} =
+\underbrace{\nabla \cdot \left( K \nabla \mathbf{D} \right)}_{\text{implicit}} - \underbrace{\nabla \cdot \left( K \nabla \mathbf{D} \right)}_{\text{explicit}} + \nabla \cdot \left( J\, \mathbf{F}^{-1} \cdot \boldsymbol{\sigma} \right) + \mathbf{S}_\text{stab}
 $$
 
 with the implicit stiffness $K = 2\mu + \lambda$. The implicit and explicit

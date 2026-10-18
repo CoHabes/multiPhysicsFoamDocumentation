@@ -42,19 +42,12 @@ $$
 $$
 
 $$
-\frac{\partial \left(\rho \mathbf{U}\right)}{\partial t}
-+ \nabla \cdot \left(\rho \mathbf{U}\mathbf{U}\right)
-- \nabla \cdot \mathbf{R}
+\frac{\partial \left(\rho \mathbf{U}\right)}{\partial t} + \nabla \cdot \left(\rho \mathbf{U}\mathbf{U}\right) - \nabla \cdot \mathbf{R}
 = -\nabla p + \mathbf{S}_U
 $$
 
 $$
-\frac{\partial \left(\rho h\right)}{\partial t}
-+ \nabla \cdot \left(\rho \mathbf{U} h\right)
-+ \frac{\partial \left(\rho K\right)}{\partial t}
-+ \nabla \cdot \left(\rho \mathbf{U} K\right)
-- \frac{\partial p}{\partial t}
-- \nabla \cdot \left( \alpha_\text{eff} \nabla h \right)
+\frac{\partial \left(\rho h\right)}{\partial t} + \nabla \cdot \left(\rho \mathbf{U} h\right) + \frac{\partial \left(\rho K\right)}{\partial t} + \nabla \cdot \left(\rho \mathbf{U} K\right) - \frac{\partial p}{\partial t} - \nabla \cdot \left( \alpha_\text{eff} \nabla h \right)
 = \mathbf{S}_h
 $$
 

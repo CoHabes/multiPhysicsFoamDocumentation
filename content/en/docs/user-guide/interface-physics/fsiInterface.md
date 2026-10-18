@@ -47,8 +47,7 @@ The fluid traction $\mathbf{t}_f = \boldsymbol{\sigma}_f\cdot\mathbf{n}_f$
 $\mathbf{t} = -\mathbf{t}_f$. The normal gradient is then
 
 $$
-\frac{\partial \mathbf{D}}{\partial n}
-=
+\frac{\partial \mathbf{D}}{\partial n} =
 \frac{1}{K}\left[\,\mathbf{t} - \mathbf{n}\cdot\boldsymbol{\sigma}_s + K\,\mathbf{n}_0\cdot\nabla\mathbf{D}\,\right],
 \qquad
 \mathbf{n} = \frac{\mathbf{F}^{-T}\cdot\mathbf{n}_0}{\lvert\mathbf{F}^{-T}\cdot\mathbf{n}_0\rvert}

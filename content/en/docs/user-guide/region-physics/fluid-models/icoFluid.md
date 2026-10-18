@@ -31,11 +31,7 @@ $$
 ### Momentum
 
 $$
-\frac{\partial (\rho \mathbf{U})}{\partial t}
-+ \nabla \cdot \left( \rho_f \, \phi \, \mathbf{U} \right)
-- \nabla \cdot \left( \mu \nabla \mathbf{U} \right)
-- \nabla \cdot \left( \mu \, \text{dev}\!\left[ (\nabla \mathbf{U})^T \right] \right)
-+ \mathbf{F}_\text{MRF}
+\frac{\partial (\rho \mathbf{U})}{\partial t} + \nabla \cdot \left( \rho_f \, \phi \, \mathbf{U} \right) - \nabla \cdot \left( \mu \nabla \mathbf{U} \right) - \nabla \cdot \left( \mu \, \text{dev}\!\left[ (\nabla \mathbf{U})^T \right] \right) + \mathbf{F}_\text{MRF}
 = -\nabla p
 $$
 

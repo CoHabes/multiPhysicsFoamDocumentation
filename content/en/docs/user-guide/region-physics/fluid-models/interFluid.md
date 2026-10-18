@@ -35,9 +35,7 @@ $$
 ### Phase-fraction transport
 
 $$
-\frac{\partial \alpha_1}{\partial t}
-+ \nabla \cdot \left(\alpha_1 \mathbf{U}\right)
-+ \nabla \cdot \left(\alpha_1 (1 - \alpha_1)\,\mathbf{U}_r\right) = 0,
+\frac{\partial \alpha_1}{\partial t} + \nabla \cdot \left(\alpha_1 \mathbf{U}\right) + \nabla \cdot \left(\alpha_1 (1 - \alpha_1)\,\mathbf{U}_r\right) = 0,
 \qquad \alpha_2 = 1 - \alpha_1
 $$
 
@@ -66,11 +64,8 @@ $$
 ### Momentum
 
 $$
-\frac{\partial (\rho \mathbf{U})}{\partial t}
-+ \nabla \cdot \left(\rho \mathbf{U}\mathbf{U}\right)
-- \nabla \cdot \mathbf{R}
-= -\nabla p_{rgh} - (\mathbf{g} \cdot \mathbf{h})\,\nabla \rho
-+ \mathbf{F}_\sigma + \mathbf{S}_U
+\frac{\partial (\rho \mathbf{U})}{\partial t} + \nabla \cdot \left(\rho \mathbf{U}\mathbf{U}\right) - \nabla \cdot \mathbf{R}
+= -\nabla p_{rgh} - (\mathbf{g} \cdot \mathbf{h})\,\nabla \rho + \mathbf{F}_\sigma + \mathbf{S}_U
 $$
 
 In the discrete momentum equation the convective term uses the mass flux

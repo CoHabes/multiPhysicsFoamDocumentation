@@ -38,17 +38,12 @@ $$
 $$
 
 $$
-\frac{\partial \alpha_1}{\partial t}
-+ \nabla \cdot \left(\alpha_1 \mathbf{U}\right)
-+ \nabla \cdot \left(\alpha_1 (1 - \alpha_1)\,\mathbf{U}_r\right) = 0
+\frac{\partial \alpha_1}{\partial t} + \nabla \cdot \left(\alpha_1 \mathbf{U}\right) + \nabla \cdot \left(\alpha_1 (1 - \alpha_1)\,\mathbf{U}_r\right) = 0
 $$
 
 $$
-\frac{\partial (\rho \mathbf{U})}{\partial t}
-+ \nabla \cdot \left(\rho \mathbf{U}\mathbf{U}\right)
-- \nabla \cdot \mathbf{R}
-= -\nabla p_{rgh} - (\mathbf{g} \cdot \mathbf{h})\,\nabla \rho
-+ \sigma \kappa \nabla \alpha_1
+\frac{\partial (\rho \mathbf{U})}{\partial t} + \nabla \cdot \left(\rho \mathbf{U}\mathbf{U}\right) - \nabla \cdot \mathbf{R}
+= -\nabla p_{rgh} - (\mathbf{g} \cdot \mathbf{h})\,\nabla \rho + \sigma \kappa \nabla \alpha_1
 $$
 
 with mixture density and viscosity $\rho = \alpha_1\rho_1 + (1-\alpha_1)\rho_2$ and $\mu = \alpha_1\rho_1\nu_1 + (1-\alpha_1)\rho_2\nu_2$. The last term of the $\alpha_1$ equation is an artificial compression term that keeps the interface sharp. It is only active where $0 < \alpha_1 < 1$. The solver solves for $p_{rgh} = p - \rho\,\mathbf{g}\cdot\mathbf{h}$, and the static pressure $p$ is recovered afterwards. The full model is described in `docs/regions/interFluid.md`.

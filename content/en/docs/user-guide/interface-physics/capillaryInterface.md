@@ -45,8 +45,7 @@ normal part of $\mathbf{u}_s$ (which is the side-A mesh normal velocity, see
 **Pressure, set on side A** (`regionCoupledPressureValue`, field `p`):
 
 $$
-p_A = p_B + 2(\mu_B - \mu_A)\,\nabla_s\cdot\mathbf{u}_s - \sigma\kappa
-+ (\rho_B - \rho_A)\,(\mathbf{x}_f - \mathbf{x}_\text{ref})\cdot\mathbf{g}
+p_A = p_B + 2(\mu_B - \mu_A)\,\nabla_s\cdot\mathbf{u}_s - \sigma\kappa + (\rho_B - \rho_A)\,(\mathbf{x}_f - \mathbf{x}_\text{ref})\cdot\mathbf{g}
 \quad \text{on } \Gamma
 $$
 
@@ -64,10 +63,7 @@ $p_{\text{kin},A} = \big(\rho_B\,p_{\text{kin},B} + \text{jump terms}\big)/\rho_
 
 $$
 \mu_A \frac{\partial \mathbf{U}_A}{\partial n} =
--(\mathbf{I} - \mathbf{n}\mathbf{n})\cdot\big(\mu_B \partial_{n_B}\mathbf{U}_B\big)
-+ \mathbf{f}_{\sigma,t}
-- \mu_A\,\mathbf{n}\,(\nabla_s\cdot\mathbf{u}_s)
-+ (\mu_B - \mu_A)\,(\nabla_s\mathbf{u}_s)\cdot\mathbf{n}
+-(\mathbf{I} - \mathbf{n}\mathbf{n})\cdot\big(\mu_B \partial_{n_B}\mathbf{U}_B\big) + \mathbf{f}_{\sigma,t} - \mu_A\,\mathbf{n}\,(\nabla_s\cdot\mathbf{u}_s) + (\mu_B - \mu_A)\,(\nabla_s\mathbf{u}_s)\cdot\mathbf{n}
 $$
 
 with the tangential surface-tension force

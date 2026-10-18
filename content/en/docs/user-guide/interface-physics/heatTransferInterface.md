@@ -92,9 +92,10 @@ its `IOdictionary` run-time selection table. At run time:
    - `regionCoupledHeatFlux::updateCoeffs()` asks the neighbour
      jump BC for `flux()`, interpolates it, negates it, divides it by the local
      `kappa`, applies the acceleration model and fixes the gradient.
-   - Both BCs check that the interface found through their own `interfaceType`
-     entry is a `heatTransferInterface`. Otherwise they stop with a
-     `FatalError`.
+   - `regionCoupledTemperatureJump` looks up the interface found through its
+     own `interfaceType` entry as a `heatTransferInterface` (to read
+     `jumpCoefficient`) and stops with a `FatalError` if it is another type.
+     `regionCoupledHeatFlux` defines the same check but never calls it.
 7. **Residuals**: the DNA loop evaluates the jump residual
    $|T_A - T_B - \texttt{valueJump}|$ and the flux residual
    $|q_B + q_{A\to B} - 0|$ through the generic jump/flux BCs. These are checked

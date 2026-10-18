@@ -28,9 +28,7 @@ $$
 ### Momentum
 
 $$
-\frac{\partial \mathbf{U}}{\partial t}
-+ \nabla \cdot \left(\mathbf{U}\mathbf{U}\right)
-- \nabla \cdot \mathbf{R}
+\frac{\partial \mathbf{U}}{\partial t} + \nabla \cdot \left(\mathbf{U}\mathbf{U}\right) - \nabla \cdot \mathbf{R}
 = -\nabla p_\text{kin} + \mathbf{S}_U
 $$
 
