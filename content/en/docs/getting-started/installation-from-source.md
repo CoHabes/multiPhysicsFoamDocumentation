@@ -18,10 +18,11 @@ the following OpenFOAM versions are supported:
 | multiPhysicsFoam version | OpenFOAM version                 |
 | ------------------------ | -------------------------------- |
 | multiPhysicsFoam-v0.1    | OpenFOAM-v2512                   |
+|                          | OpenFOAM-v2606                   |
 
 multiPhysicsFoam is developed using the OpenFOAM.com variant of OpenFOAM
-(i.e., OpenFOAM-v2512); consequently, this is the recommended variant for using
- multiPhysicsFoam.
+(i.e., OpenFOAM-v2512 and OpenFOAM-v2606); consequently, this is the recommended
+variant for using multiPhysicsFoam.
 
 multiPhysicsFoam builds against an unmodified OpenFOAM installation, e.g. the
 precompiled packages from openfoam.com. No files of OpenFOAM itself need to be
