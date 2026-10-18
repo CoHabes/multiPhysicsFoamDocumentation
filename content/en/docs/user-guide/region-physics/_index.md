@@ -6,4 +6,3 @@ description: >
   Available region physics types and their configuration.
 ---
 
-Documentation for the available region physics types will be added here.

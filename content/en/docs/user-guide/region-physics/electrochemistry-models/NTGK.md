@@ -1,6 +1,6 @@
 ---
-title: "NTGK"
 mathjax: true
+title: "NTGK"
 description: "Semi-empirical electrochemical and thermal model for lithium-ion battery cells, including a thermal abuse sub-model."
 tags: ["region-type", "electrochemistry", "battery", "thermal"]
 weight: 10
@@ -10,7 +10,7 @@ weight: 10
 
 `NTGK` implements a semi-empirical electrochemical and thermal model for
 lithium-ion (Li-ion) battery cells. The acronym stands for the names of the
-fitting functions used for the electrochemical conductance (NTGK) and open
+fitting functions used for the electrochemical conductance (**N**TGK) and open
 circuit potential, which are polynomial functions of the depth of discharge
 (DOD) with temperature corrections. The model is based on the formulations of
 Kwon et al. (2006) and Kim et al. (2007).
@@ -24,8 +24,8 @@ The region type solves:
   reactions, electrolyte decomposition) for over-temperature safety analysis
 
 It is intended for use as the jelly-roll region of a battery cell, and can be
-coupled to current-collector tab regions (`conductPosPotentialTemperature`,
-`conductNegPotentialTemperature`) via `defaultInterface` for realistic battery
+coupled to current-collector tab regions (`conductPotentialTemperature` with
+`electrode positive|negative`) via `defaultInterface` for realistic battery
 geometries.
 
 ## Governing Equations
@@ -198,8 +198,8 @@ regions
 regions
 (
     ( batteryRegion (NTGK) )
-    ( negTabRegion  (conductNegPotentialTemperature) )
-    ( posTabRegion  (conductPosPotentialTemperature) )
+    ( negTabRegion  (conductPotentialTemperature) )   // transportProperties: electrode negative;
+    ( posTabRegion  (conductPotentialTemperature) )   // transportProperties: electrode positive;
 );
 
 DNA
@@ -224,8 +224,8 @@ deltaT              1;      // 1 s time step is typical
 
 | Interface type | Coupled region types | Exchanged fields | Coupling mode |
 |----------------|---------------------|-----------------|---------------|
-| `defaultInterface` | `conductPosPotentialTemperature` | `phiPos`, `T` | partitioned (DNA) |
-| `defaultInterface` | `conductNegPotentialTemperature` | `phiNeg`, `T` | partitioned (DNA) |
+| `defaultInterface` | `conductPotentialTemperature` (`electrode positive`) | `phiPos`, `T` | partitioned (DNA) |
+| `defaultInterface` | `conductPotentialTemperature` (`electrode negative`) | `phiNeg`, `T` | partitioned (DNA) |
 
 The electrode potential and temperature boundary conditions at the tab interfaces
 are enforced via `genericRegionCoupledJump` / `genericRegionCoupledFlux` patch
