@@ -3,6 +3,29 @@
   integrity="sha384-6F4Ibv/ylL12O35KFWTeGTHuBKDz5L6yjKsgv3QHQ8s4NTqlDXq7kMlYXGs7MHFc"
   crossorigin="anonymous">
 </script>
+<script
+  src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"
+  integrity="sha384-yc/c2Lk1s2V2ir1rxvjo8YyVD9PlOlYTqpNr3Wm1WIuAA30GlDYNx6U5104OiavY"
+  crossorigin="anonymous">
+</script>
 <script>
-  mermaid.initialize({ startOnLoad: true });
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "dark",
+    themeVariables: {
+      mainBkg: "#c9d8fc", // light $mpf-blue
+      classText: "#1a1f2b",
+      nodeBorder: "#4279f4",
+    },
+  });
+  window.addEventListener("DOMContentLoaded", () =>
+    mermaid.run().then(() =>
+      document.querySelectorAll("pre.mermaid svg").forEach((svg) => {
+        svg.style.maxWidth = "none";
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svgPanZoom(svg, { controlIconsEnabled: true, mouseWheelZoomEnabled: true, maxZoom: 50 });
+      })
+    )
+  );
 </script>

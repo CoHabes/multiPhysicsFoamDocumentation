@@ -22,6 +22,19 @@
 // --------------------------------------------------
 .td-content pre.mermaid {
   background-color: $code-block-bg;
+  height: 75vh; // fixed viewport for svg-pan-zoom (scroll/drag to navigate)
+  resize: vertical;
+  overflow: hidden;
+
+  // mermaid's scoped #id styles otherwise win and draw 1px lines
+  .relation {
+    stroke-width: 2px !important;
+  }
+
+  // multiplicities sit on the dark background, not on a light label box
+  .edgeTerminals .edgeLabel {
+    color: #ccc !important;
+  }
 }
 
 // --------------------------------------------------
