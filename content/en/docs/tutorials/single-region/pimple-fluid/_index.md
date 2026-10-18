@@ -1,6 +1,6 @@
 ---
-title: "Pimple Fluid"
-linkTitle: "Pimple Fluid"
+title: "pimpleFluid"
+linkTitle: "pimpleFluid"
 weight: 1
 description: >
   Single-region fluid cases using the pimpleFluid region type.

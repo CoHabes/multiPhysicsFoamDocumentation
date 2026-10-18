@@ -1,6 +1,6 @@
 ---
-title: "Rho Pimple Fluid"
-linkTitle: "Rho Pimple Fluid"
+title: "rhoPimpleFluid"
+linkTitle: "rhoPimpleFluid"
 weight: 5
 description: >
   Single-region cases using the rhoPimpleFluid region type.
