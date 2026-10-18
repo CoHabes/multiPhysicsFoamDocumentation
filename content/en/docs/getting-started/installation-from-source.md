@@ -17,37 +17,16 @@ the following OpenFOAM versions are supported:
 
 | multiPhysicsFoam version | OpenFOAM version                 |
 | ------------------------ | -------------------------------- |
-| multiPhysicsFoam-v0.1    | OpenFOAM-v2506                   |
+| multiPhysicsFoam-v0.1    | OpenFOAM-v2512                   |
+|                          | OpenFOAM-v2606                   |
 
 multiPhysicsFoam is developed using the OpenFOAM.com variant of OpenFOAM
-(i.e., OpenFOAM-v2506); consequently, this is the recommended variant for using
- multiPhysicsFoam.
+(i.e., OpenFOAM-v2512 and OpenFOAM-v2606); consequently, this is the recommended
+variant for using multiPhysicsFoam.
 
-### Optional fixes for the OpenFOAM installation
-
-The multiPhysicsFoam `Allwmake` script will ask you to fix files in the main
- OpenFOAM/foam installation. These checks will alwys be performed.
- The fixes will not break you OpenFOAM installation nor any other applications compiled
- against you OpenFOAM version. You will get clear information on what to do when running `Allwmake` for the first time
- e.g.
-
-```bash
-> Check filesToReplace
-
-******** PLEASE FIX THIS ***********
-You should replace the file '/usr/lib/openfoam/openfoam2512/src/OpenFOAM/fields/GeometricFields/GeometricField/GeometricField.H' with 'filesToReplace/GeometricField.H'
-
-You can do it by running the following commands:
-    cp filesToReplace/GeometricField.H /usr/lib/openfoam/openfoam2512/src/OpenFOAM/fields/GeometricFields/GeometricField/
-    wmake libso /usr/lib/openfoam/openfoam2512/src/OpenFOAM
-If you have not compiled OpenFOAM from scratch you might have to recompile it as a whole (sorry for that)
-
-These actions will not break your working foam-extend installation.
-It will just fix some minor bugs in the listed file which need to 
-be fixed in order to make multiPhysicsFoam work propperly.
-************************************
-
-```
+multiPhysicsFoam builds against an unmodified OpenFOAM installation, e.g. the
+precompiled packages from openfoam.com. No files of OpenFOAM itself need to be
+changed or recompiled.
 
 ---
 
@@ -119,16 +98,19 @@ The latest nightly build development branch can be downloaded with
 ### Building multiPhysicsFoam
 
 Before building multiPhysicsFoam, a compatible version of OpenFOAM
-should be sourced: see the [table above](#supported-versions-of-openfoamfoam). To
+should be sourced: see the [table above](#supported-versions-of-openfoam). `Allwmake`
+stops with a message if no or an unsupported OpenFOAM version is sourced. To
 build multiPhysicsFoam, enter the multiPhysicsFoam directory and execute the included
 Allwmake script, e.g.
 
 ```bash
 > cd multiPhysicsFoam
-> ./Allwmake 2>&1 | tee log.Allwmake
+> ./Allwmake
 ```
 
 Depending on your hardware, you can expect this build to last about 5-10 minutes.
+To compile in parallel, set the number of cores beforehand, e.g.
+`export WM_NCOMPPROCS=8`.
 
 If multiPhysicsFoam is built successfully, you will be presented with the following
 message:
@@ -136,9 +118,9 @@ message:
 ```bash
 There were no build errors: enjoy multiPhysicsFoam
 
-To test the installation test any of the provided tutorials, eg:
-    > cd tutorials/conjugateHeatTransfer/flowOverHeatedPlate 
-    > ./Allrun -p -P
+To test the installation, run one of the tutorials, e.g.:
+    cd tutorials/conjugateHeatTransfer/flowOverHeatedPlate
+    ./Allrun -p -S
 ```
 
 If the build encounters errors, you will receive the following message:
@@ -151,8 +133,8 @@ There were build errors in the following logs:
 Please examine these logs for additional details
 ```
 
-You can examine the source of the errors in the `log.Allwmake` file within the
-multiPhysicsFoam parent directory.
+Each build step writes its own log file, `log.Allwmake.<name>`, in the
+multiPhysicsFoam directory; the message lists the ones containing errors.
 Alternatively, if you believe you have encountered a bug, please create a new
 issue at
 [https://bitbucket.org/hmarschall/multiphysicsfoam/issues?status=new&status=open&status=submitted&is_spam=!spam](https://bitbucket.org/hmarschall/multiphysicsfoam/issues?status=new&status=open&status=submitted&is_spam=!spam).
