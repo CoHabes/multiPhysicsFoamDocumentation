@@ -6,4 +6,3 @@ description: >
   Available electrochemistry models and their configuration.
 ---
 
-Documentation for the available electrochemistry models will be added here.

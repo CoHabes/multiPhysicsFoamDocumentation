@@ -1,8 +1,8 @@
 ---
-title: "pimpleFluid"
 mathjax: true
+title: "pimpleFluid"
 description: "Transient, incompressible, turbulent single-phase flow on static or moving meshes using the PIMPLE algorithm."
-tags: ["fluid", "incompressible", "turbulence", "moving-mesh"]
+tags: ["region-type", "fluid", "incompressible", "turbulence", "moving-mesh"]
 weight: 10
 ---
 
@@ -28,10 +28,11 @@ $$
 ### Momentum
 
 $$
-\frac{\partial \mathbf{U}}{\partial t} + \nabla\cdot\left(\mathbf{U}\mathbf{U}\right) - \nabla\cdot\mathbf{R}
- = -\nabla p_\text{kin} + \mathbf{S}_U
+\frac{\partial \mathbf{U}}{\partial t}
++ \nabla \cdot \left(\mathbf{U}\mathbf{U}\right)
+- \nabla \cdot \mathbf{R}
+= -\nabla p_\text{kin} + \mathbf{S}_U
 $$
-
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
@@ -186,9 +187,9 @@ maxDeltaT       1e-3;       // upper bound on time-step size
 
 | Interface type | Exchanged fields | Coupling modes |
 |----------------|-----------------|----------------|
-| `heatTransferInterface` | Temperature `T`, heat flux `q` | partitioned (DNA), monolithic |
-| `fsiInterface` | Displacement `D`, traction `sigma·n` | partitioned (DNA) |
-| `defaultInterface` | Any scalar/vector | partitioned (DNA) |
+| `heatTransferInterface` | Temperature `T`, heat flux `q` (via stacked `transportTemperature`) | partitioned (DNA) |
+| `fsiInterface` | Traction `sigma·n` (to solid); interface motion from solid `pointD` via mesh motion | partitioned (DNA) |
+| `defaultInterface` | Any scalar (generic `regionCoupledScalarJump`/`Flux` BCs) | partitioned (DNA) |
 
 The stress tensor `sigma` is automatically maintained and made available to
 `fsiInterface` for computing the traction boundary condition on the solid side.
@@ -207,7 +208,7 @@ The stress tensor `sigma` is automatically maintained and made available to
   here. Pair with `transportTemperature` or `turbulentTransportTemperature` for
   heat transfer in the fluid.
 - **Monolithic p-U coupling not implemented** — `setCoupledEqns` is a no-op.
-  For monolithic pressure-velocity coupling use `pUCoupledIcoFluid`.
+  For monolithic pressure-velocity coupling use `pUCoupledIcoFluid` (currently disabled in `src/multiRegionSystem/Make/files`).
 
 ## Tutorials
 
@@ -222,5 +223,5 @@ The stress tensor `sigma` is automatically maintained and made available to
 
 ## References
 
-- Alkfri, A., Habes, C., Marschall, H., *multiRegionFoam: A Unified Multiphysics Framework for Multi-Region Coupled Continuum-Physical Problems, Engineering with Computers, 2023.
+- Alkfri, A., Habes, C., Marschall, H., *multiRegionFoam: A Unified Multiphysics Framework for Multi-Region Coupled Continuum-Physical Problems*, Engineering with Computers, 2023.
   DOI: [10.1007/s00366-024-01974-4](https://doi.org/10.1007/s00366-024-01974-4)
