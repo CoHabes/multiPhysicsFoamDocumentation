@@ -1,0 +1,5 @@
+{{- /* Renders ```note / ```tip / ```warning code blocks as Docsy alerts with markdown content. */ -}}
+<div class="alert alert-{{ .color }}" role="alert">
+<h4 class="alert-heading">{{ .title }}</h4>
+{{ .ctx.Inner | .ctx.Page.RenderString (dict "display" "block") }}
+</div>
