@@ -143,4 +143,4 @@ issue at
 
 ## What Next?
 
-Please see the [tutorial guide](../tutorials/README.md).
+Please see the [tutorial guide]({{< relref "tutorials" >}}).
